@@ -1,8 +1,8 @@
 package com.example.visiarte_ms.model;
 
-import com.example.visiarte_ms.model.DTO.UserDTO;
 import com.example.visiarte_ms.model.enums.UserAutority;
 import com.example.visiarte_ms.model.enums.UserStatus;
+import com.example.visiarte_ms.model.request.UserRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,39 +24,39 @@ public class User{
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "fisrt_name", nullable = false)
+    @Column(name = "fisrt_name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private UserStatus status;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @Column(name = "user_autority", nullable = false)
+    @Column(name = "user_autority")
     private UserAutority userAutority;
 
-    public void createUser(UserDTO userDTO) {
-        this.phoneNumber = userDTO.phoneNumber();
-        this.firstName = userDTO.firstName();
-        this.password = userDTO.password();
-        this.lastName = userDTO.lastName();
-        this.email = userDTO.email();
+    public void createUser(UserRequest userRequest) {
+        this.phoneNumber = userRequest.phoneNumber();
+        this.firstName = userRequest.firstName();
+        this.password = userRequest.password();
+        this.lastName = userRequest.lastName();
+        this.email = userRequest.email();
         this.userAutority = UserAutority.USER;
         this.createdAt = LocalDateTime.now();
         this.status = UserStatus.ACTIVE;

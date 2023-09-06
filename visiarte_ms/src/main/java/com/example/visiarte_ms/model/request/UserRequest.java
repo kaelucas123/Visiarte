@@ -1,11 +1,9 @@
-package com.example.visiarte_ms.model.DTO;
-
-import jakarta.persistence.Column;
-import lombok.Getter;
+package com.example.visiarte_ms.model.request;
 
 import javax.validation.constraints.NotBlank;
 
-public record UserDTO(
+public record UserRequest(
+
         @NotBlank
         String email,
         @NotBlank
@@ -16,5 +14,6 @@ public record UserDTO(
         String lastName,
         @NotBlank
         String phoneNumber
+
 ) {
 }

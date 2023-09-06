@@ -2,8 +2,10 @@ package com.example.visiarte_ms.service;
 
 import com.example.visiarte_ms.model.DTO.UserDTO;
 import com.example.visiarte_ms.model.User;
+import com.example.visiarte_ms.model.request.UserRequest;
 import com.example.visiarte_ms.repository.UserRepository;
 import com.example.visiarte_ms.resource.UserResource;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,9 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class UserService {
+
     private UserRepository userRepository;
 
     public List<User> findAll() {
@@ -25,10 +29,10 @@ public class UserService {
         log.info("Finding user by id: {}",  id);
         return this.userRepository.findById(id).orElse(null);
     }
-    public User createUser(UserDTO userDTO) {
+    public User createUser(UserRequest userRequest) {
         log.info("creating user");
         User user = new User();
-        user.createUser(userDTO);
+        user.createUser(userRequest);
 
         return this.userRepository.save(user);
     }
