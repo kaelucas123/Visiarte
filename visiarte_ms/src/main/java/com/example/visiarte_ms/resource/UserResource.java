@@ -2,6 +2,7 @@ package com.example.visiarte_ms.resource;
 
 import com.example.visiarte_ms.model.User;
 import com.example.visiarte_ms.model.request.UserRequest;
+import com.example.visiarte_ms.model.response.UserResponse;
 import com.example.visiarte_ms.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -24,20 +25,20 @@ public class UserResource {
     private UserService userService;
 
     @GetMapping(value = "/{id}")
-    public DeferredResult<ResponseEntity<User>> findById(@PathVariable UUID id) {
-        DeferredResult<ResponseEntity<User>> dr = new DeferredResult<>();
+    public DeferredResult<ResponseEntity<UserResponse>> findById(@PathVariable UUID id) {
+        DeferredResult<ResponseEntity<UserResponse>> dr = new DeferredResult<>();
         dr.setResult(ResponseEntity.ok().body(this.userService.findById(id)));
         return dr;
     }
 
     @GetMapping()
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<UserResponse>> findAll(){
         return ResponseEntity.ok().body(userService.findAll());
     }
     @PostMapping
     public DeferredResult<ResponseEntity<User>> createUser(@RequestBody UserRequest userRequest){
         DeferredResult<ResponseEntity<User>> dr = new DeferredResult<>();
-        dr.setResult(ResponseEntity.ok().body(userService.createUser(userRequest)));
+        dr.setResult(ResponseEntity.ok().body(userService.save(userRequest)));
         return dr;
     }
 }

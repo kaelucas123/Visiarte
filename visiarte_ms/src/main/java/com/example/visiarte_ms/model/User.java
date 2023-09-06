@@ -52,11 +52,11 @@ public class User{
     private UserAutority userAutority;
 
     public void createUser(UserRequest userRequest) {
-        this.phoneNumber = userRequest.phoneNumber();
-        this.firstName = userRequest.firstName();
-        this.password = userRequest.password();
-        this.lastName = userRequest.lastName();
-        this.email = userRequest.email();
+        this.phoneNumber = userRequest.getPhoneNumber();
+        this.firstName = userRequest.getFirstName();
+        this.password = userRequest.getPassword();
+        this.lastName = userRequest.getLastName();
+        this.email = userRequest.getEmail();
         this.userAutority = UserAutority.USER;
         this.createdAt = LocalDateTime.now();
         this.status = UserStatus.ACTIVE;

@@ -1,19 +1,25 @@
 package com.example.visiarte_ms.model.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.validation.constraints.NotBlank;
 
-public record UserRequest(
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserRequest {
         @NotBlank
-        String email,
+        private String email;
         @NotBlank
-        String password,
+        private String password;
         @NotBlank
-        String firstName,
+        private String firstName;
         @NotBlank
-        String lastName,
+        private String lastName;
         @NotBlank
-        String phoneNumber
-
-) {
+        private String phoneNumber;
 }
